@@ -1,8 +1,7 @@
 :root {
   /* Typography Variables */
-  --font-family: 'Poppins', sans-serif;
-  --normal-font-weight: 400;
-  --bold-font-weight: 700;
+  --font-family: CursorGothic, sans-serif;
+  --font-weight-normal: 400;
   --normal-font-style: normal;
   --italic-font-style: italic;
   --size-small: 14px;
@@ -13,7 +12,7 @@
 
   /* Brand */
   --primary-color: #f54e00;
-  --secondary-color: color-mix(in oklab, var(--text-color) 5%, transparent);
+  --secondary-color: color-mix(in oklab, var(--text-color) 2.5%, transparent);
   --tertiary-color: #1b1913;
 }
 
@@ -33,13 +32,20 @@
   --secondary-bg: #fff;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@font-face {
+  font-family: CursorGothic;
+  src: url(/assets/fonts/CursorGothic_Regular.woff2) format("woff2");
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-size: var(--size-small);
+  font-weight: var(--font-weight-normal);
 }
 
 html,
@@ -50,7 +56,6 @@ body {
   color: var(--text-color);
   min-height: 100vh;
 }
-
 
 .container {
   max-width: 1330px;
@@ -79,6 +84,23 @@ body {
   text-decoration: none;
   line-height: 1;
   transition: all .1s ease-in-out;
+}
+
+.card-wrapper {
+  display: grid;
+  gap: calc(var(--size-large) * .5);
+}
+
+.card {
+  text-decoration: none;
+  background-color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: 4px;
+  padding: 16px 17px 18px;
+}
+
+.card:hover {
+  background-color: var(--tertiary-color);
 }
 
 /* Header Starts Here */
@@ -131,7 +153,7 @@ header .sign-download-wrapper {
 }
 
 header .sign-download-wrapper a {
-  padding: 0.45rem 0.625rem .3rem;
+  padding: 0.375rem 0.625rem;
 }
 
 header .sign-download-wrapper a:hover {
@@ -156,7 +178,6 @@ header .sign-download-wrapper a:hover {
 .hero-banner h1 {
   font-size: var(--size-xxlarge);
   line-height: 1.4;
-  font-weight: var(--normal-font-weight);
   margin-bottom: var(--size-xlarge);
 }
 
@@ -187,7 +208,6 @@ header .sign-download-wrapper a:hover {
 .trusted-partner h2 {
   text-align: center;
   margin-bottom: var(--size-xlarge);
-  font-weight: var(--normal-font-weight);
 }
 
 .partner-wrapper {
@@ -222,7 +242,7 @@ header .sign-download-wrapper a:hover {
 .content-image-wrapper {
   padding: 18px;
   border-radius: 4px;
-  background-color: transparent;
+  background-color: var(--secondary-color);
   display: grid;
   gap: calc(var(--size-large) * .5);
   border: 1px solid var(--secondary-color);
@@ -247,14 +267,12 @@ header .sign-download-wrapper a:hover {
   font-size: var(--size-xlarge);
   line-height: 1.3;
   color: var(--text-color);
-  font-weight: var(--normal-font-weight);
 }
 
 .content-image-wrapper .content-wrapper h3 {
   font-size: var(--size-xlarge);
   line-height: 1.3;
   color: color-mix(in oklab, var(--text-color) 60%, transparent);
-  font-weight: var(--normal-font-weight);
   margin-bottom: var(--size-small);
 }
 
@@ -266,6 +284,7 @@ header .sign-download-wrapper a:hover {
   align-items: center;
   gap: 2px;
   transition: all .1s ease-in-out;
+  text-decoration: none;
 }
 
 .primary-link:hover {
@@ -275,79 +294,306 @@ header .sign-download-wrapper a:hover {
 .content-image-wrapper figure {
   border-radius: 4px;
   overflow: hidden;
+  display: flex;
 }
 
 /* Agent Section Ends Here */
 
 /* Autocomplete Section Start Here */
-.autocomplete-section{
+.autocomplete-section {
   padding-bottom: 90px;
 }
+
 /* Autocomplete Section Ends Here */
 
 /* Ecosystem Section Start Here */
-.ecosystem-section{
+.ecosystem-section {
   padding-bottom: 67px;
 }
+
 /* Ecosystem Section Ends Here */
 
 /* Testimonial Section Start Here */
 .testimonial {
   padding: 67px 0;
 }
+
 .testimonial h2 {
   text-align: center;
   font-size: calc(var(--size-large) * 1.8);
-  font-weight: var(--normal-font-weight);
   margin-bottom: calc(var(--size-small) * 4);
 }
+
 .testimonial-wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: calc(var(--size-large) * .5);
 }
-.testimonial-wrapper .card{
+
+.testimonial-wrapper .card {
   display: flex;
   flex-direction: column;
-  padding: 16px 16px 18px;
   gap: calc(var(--size-xlarge) * 2);
-  background-color: var(--tertiary-color);
-  border: 1px solid var(--secondary-color);
-  border-radius: 4px;
 }
-.testimonial-wrapper .card blockquote{
+
+.testimonial-wrapper .card blockquote {
   font-size: var(--size-medium);
   line-height: 1.5;
   flex-grow: 1;
 }
-.testimonial-wrapper blockquote p{
+
+.testimonial-wrapper blockquote p {
   font-size: inherit;
   line-height: inherit;
 }
-.testimonial-wrapper .card figure{
+
+.testimonial-wrapper .card figure {
   display: flex;
   align-items: center;
   gap: 12px;
 }
-.testimonial-wrapper figure img{
+
+.testimonial-wrapper figure img {
   border-radius: 4px;
 }
-.testimonial-wrapper  figure figcaption{
+
+.testimonial-wrapper figure figcaption {
   display: flex;
   flex-direction: column;
   font-size: var(--size-small);
   line-height: 1.5;
 }
-.testimonial-wrapper .position{
+
+.testimonial-wrapper .position {
   color: color-mix(in oklab, var(--text-color) 60%, transparent);
 }
+
 /* Testimonial Section Ends Here */
+
+/* Stay On Section Start Here */
+.stay-on-section {
+  padding: calc(67px + 45px) 0;
+}
+
+.stay-on-section h2 {
+  font-size: var(--size-xxlarge);
+  margin-bottom: var(--size-xlarge);
+}
+
+.stay-on-section .card-wrapper {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.stay-on-section .card {
+  display: flex;
+  flex-direction: column;
+}
+
+.stay-on-section .card h3 {
+  font-size: var(--size-medium);
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+.stay-on-section .card p {
+  font-size: var(--size-medium);
+  line-height: 1.5;
+  color: color-mix(in oklab, var(--text-color) 60%, transparent);
+  margin-bottom: var(--size-medium);
+}
+
+.stay-on-section .card figure {
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: var(--size-medium);
+  display: flex;
+}
+
+.stay-on-section .card figure img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Stay On Section End Here */
+
+/* Change Log Section Start Here */
+.change-log-sec {
+  padding: 67px 0;
+}
+
+.change-log-sec h2 {
+  text-align: left;
+  font-size: var(--size-xxlarge);
+  margin-bottom: var(--size-xlarge);
+}
+
+.change-log-sec .card-wrapper {
+  grid-template-columns: repeat(4, 1fr);
+  margin-bottom: var(--size-xlarge);
+}
+
+.change-log-sec .card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-small);
+}
+
+.change-log-sec .version-time-wrapper {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--size-large) * .5);
+}
+
+.change-log-sec .version-time-wrapper .version {
+  font-size: var(--size-small);
+  line-height: 1;
+  color: color-mix(in oklab, var(--text-color) 60%, transparent);
+  border-radius: 2rem;
+  border: 1px solid color-mix(in oklab, var(--text-color) 60%, transparent);
+  padding: 4px 10px 3px;
+}
+
+.change-log-sec .version-time-wrapper time {
+  font-size: var(--size-medium);
+  line-height: 1;
+  color: color-mix(in oklab, var(--text-color) 60%, transparent);
+}
+
+.change-log-sec .card p {
+  font-size: var(--size-medium);
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+/* Change Log Section Ends Here */
+
+/* Join Us Section Start Here */
+.join-us-section {
+  padding: 67px 0 calc(90px + 67px);
+}
+
+.join-us-section h2 {
+  margin-bottom: var(--size-xlarge);
+}
+
+/* Join Us Section Ends Here */
+
+
+/* Recent Highlight Section Start Here */
+.recent-highlight {
+  padding: 90px 0;
+  background-color: var(--tertiary-color);
+}
+
+.recent-highlight .inner-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: calc(var(--size-large) * 1.5);
+  align-items: start;
+}
+
+.recent-highlight h2 {
+  font-size: var(--size-medium);
+  line-height: 1.5;
+}
+
+.recent-highlight .card-wrapper {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  margin-bottom: var(--size-xlarge);
+}
+
+.recent-highlight .card-wrapper .card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-xlarge);
+  justify-content: space-between;
+}
+
+.recent-highlight .card h3,
+.recent-highlight .card h4,
+.recent-highlight .card .topic,
+.recent-highlight .card time {
+  font-size: var(--size-medium);
+  line-height: 1.5;
+}
+
+.recent-highlight .card h4,
+.recent-highlight .card .topic,
+.recent-highlight .card time {
+  color: color-mix(in oklab, var(--text-color) 60%, transparent);
+}
+
+.recent-highlight .topic-time-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+/* Recent Highlight Section End Here */
+
+/* Try Cursor Section Start Here */
+.try-cursor {
+  padding: 135px 0;
+}
+
+.try-cursor .container {
+  max-width: 800px;
+}
+
+.try-cursor .inner-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.try-cursor h2 {
+  font-size: calc(var(--size-medium) * 4.5);
+  line-height: 1.3;
+  margin-bottom: var(--size-xlarge);
+}
+
+.try-cursor .primary-btn {
+  padding: 12px 21px;
+  font-size: var(--size-medium);
+  display: inline-block;
+}
+
+/* Try Cursor Section Ends Here */
 
 
 /* Footer Start Here */
 footer {
-  padding: 1.875rem 0;
+  padding: 67px 0 30px;
+  background-color: var(--tertiary-color);
+}
+
+footer .top-container {
+  margin-bottom: calc(var(--size-large) * 5);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--size-large);
+}
+
+footer .top-container h3 {
+  font-size: var(--size-small);
+  margin-bottom: 5px;
+  color: color-mix(in oklab, var(--text-color) 60%, transparent);
+}
+
+footer .top-container ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+footer .top-container ul li a {
+  font-size: var(--size-small);
+  line-height: 1.5;
+  padding: 4px 0;
+  text-decoration: none;
+  color: var(--text-color);
+  display: inline-block;
 }
 
 footer .bottom-container {
@@ -356,6 +602,13 @@ footer .bottom-container {
   justify-content: space-between;
 }
 
+footer .top-container ul li a.external-link span {
+  display: none;
+}
+
+footer .top-container ul li a.external-link:hover span {
+  display: inline-block;
+}
 
 footer .theme-tab {
   padding: .125rem;
